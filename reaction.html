@@ -27,7 +27,37 @@ function recordReact() {
   myTime = Date.now();
   console.log("Time : " + myTime);
 }
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
+function startTime() {
+  var countstart = getRandomIntInclusive(2, 10);
+  console.log(countstart);
+
+  for (var i = 0; i < countstart; i++) {
+
+    setTimeout(function (i) {
+      document.getElementById("countdown").innerHTML = i
+    }, ((countstart-1-i) * 1000), i)
+
+  }
+
+  setTimeout(function (i) {
+    if (myTime == undefined) {
+      document.getElementById("target").innerHTML = "Too Slow"
+      
+    }
+    else {
+      var buttonTime = Date.now();
+      var elapsedTime = buttonTime - myTime;
+      document.getElementById("target").innerHTML = "Time was " + elapsedTime;
+      
+    }
+  }, (countstart-1)*1000)
+}
 
 
 
