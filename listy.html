@@ -26,30 +26,60 @@
 
 <body>
     <h1>sri sathya mamidala builds a list</h1>
-    <input type="text" id="text" name="text"> <br><br>
+    <input id= "input" type = "text"></input>
 
-    <div class="flex-container" id="target">
-        <div class="listy"> listitem 1</div>
-        <div class="listy"> listitem 2</div>
-        <div class="listy"> listitem 3</div>
-    </div>
+		<div class="flex-container" id="target">
+		  <div class= "listy">list item1</div>   
+		  <div class= "listy">list item2</div>  
+		  <div class= "listy">list item3</div>  
+          
+		</div>
 
-    <p> Press the button to create an new element of type div and then add it to the container.
-    </p>
-    <button onclick="makeNewDiv()">Add one</button>
+	<p> Press the button to create an new element of type div and then add it to the container.
+		</p>
+        
+		<button onclick="makeNewDiv()">Add one</button>
 
 
 </body>
 <script>
-  function makeNewDiv(){
+	function makeNewDiv(){
 		/* make the div and its text */
-		let element = document.createElement("p")
-		element.innerHTML = "an item after 3"
-		element.style.color = "orange"
+		let element = document.createElement("div")
+		element.innerHTML =  document.getElementById("input").value
+		element.className = "listy"
+
+		/* add it to the container */
+		var listyItems = document.getElementsByClassName("listy")
+		var a = 0
+        if(listyItems.length>9){
+
+			for ( let item of listyItems)
+			{
+				console.log(item.innerHTML)
+				if(item.innerHTML === document.getElementById("input").value)
+				{
+					item.remove();
+					console.log("We are getting rid of duplicates.");
+					a=1;
+					break;
+				}
+			}
+			if(a==0) {
+                var itemtoberemoved = getRandomIntInclusive(0, 9);
+				console.log(itemtoberemoved);
+
+				listyItems[itemtoberemoved].remove();
+				console.log("We get rid of the " + itemtoberemoved + " item.");
+				}
+
+		}
+
 
 		/* add it to the container */
 		document.getElementById('target').appendChild(element)
-		
+
 	}
+   
 </script>
 </html>	
