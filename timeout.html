@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>setTimeout use</title>
+  <title>the reaction</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,27 +11,45 @@
 </head>
 <body>
 
-  <h2>Timeout - Red in 3 seconds</h2>
+  <h2>sri sathya mamidala reaction timer</h2>
+  <p id="target">Your time</p>
+    <p id="countdown">Count</p>
 
-  <button type="button"
-  class="btn btn-primary"
-  onclick="buttonPress2()">
-  Click me change the color.</button>
+    <button type="button" class="btn btn-primary" onclick="startTime()"> Start Timer</button>
+    <button id="react" class="btn btn-primary" onclick="recordReact()"> React Now </button>
+  </div>
   
-  <p id="target">I will become red </p>
+  
   
   <script> 
-  function buttonPress1() {
-    setTimeout(function(){
-      document.getElementById('target').style.color = "red"
-    }, 3000)
-  }
-
-  function buttonPress2() {
-    setTimeout(()=>{
-      document.getElementById('target').style.color = "red"
-    }, 3000)
-  }
+  
+  var myTime=undefined;
+    function recordReact() {
+        myTime=Date.now();
+        console.log(myTime);  
+    }
+    function startTime() {
+        var rand=Math.floor(Math.random()*(max-min)+min)
+        for(let i=0;i<rand+1;i++){
+            var j=(rand-i)*1000;
+            var p=i;
+      setTimeout(() => {
+          
+        document.getElementById("countdown").innerHTML = i;
+      }, j)}
+      setTimeout(() => {
+          if(myTime == undefined)
+          document.getElementById("target").innerHTML = "Too Slow";
+          else{
+              var buttonTime = Date.now();
+              var diff=buttonTime-myTime;
+              document.getElementById("target").innerHTML = "Time was "+diff+" ms"
+              myTime=undefined
+          }
+      }, rand*1000)
+    }
+  
+    
   </script>
 
 </body>
